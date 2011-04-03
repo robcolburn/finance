@@ -33,9 +33,11 @@ j(function(){
 
   // remove item
   j('#items .delete a').live('click', function(){
-    var url = j(this).attr('href');
-    remove(j(this).parents('tr'));
-    j.post(url, { _method: 'DELETE' }, response);
+    if (confirm('Delete this item?')) {
+      var url = j(this).attr('href');
+      remove(j(this).parents('tr'));
+      j.post(url, { _method: 'DELETE' }, response);
+    }
     return false;
   });
 });
