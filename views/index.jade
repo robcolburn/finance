@@ -13,7 +13,7 @@ form#add-item-form
   p.actions
     input#add-item(type='submit', value='Add')
 
-table#items(class=items.length ? '' : 'hide')
+table#items(class=Object.keys(items).length ? '' : 'hide')
   thead
     tr
       th
@@ -23,4 +23,4 @@ table#items(class=items.length ? '' : 'hide')
       th Tags
       th Date
   tbody
-    != partial('item', items)
+    != partial('item', { collection: items })

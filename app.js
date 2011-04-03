@@ -31,11 +31,6 @@ function normalize() {
     var item = db.items[id];
     item.date = new Date(item.date);
   });
-
-  // length
-  Object.defineProperty(db.items, 'length', { get: function(){
-    return Object.keys(db.items).length;
-  }});
 }
 
 // configuration
