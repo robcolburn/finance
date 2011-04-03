@@ -34,7 +34,7 @@ function validate(obj, prop, type) {
  * Create an item.
  */
 
-exports.create = function(req, res){
+exports.create = function(req, res, next){
   var item = req.body.item;
   item.date = utils.parseDate(item.date);
   item.tags = item.tags.split(/ *, */);
@@ -43,10 +43,17 @@ exports.create = function(req, res){
     validate(item, 'date', 'date');
     validate(item, 'category');
     validate(item, 'amount', 'number');
-    res.send(item);
     var len = (db.items = db.items || []).push(item);
     item.id = len - 1;
     db.save();
+    res.partial('item', { object: item }, function(err, html){
+      if (err) return next(err);
+      res.send({
+          message: 'Added item'
+        , prepend: html
+        , to: '#items'
+      });
+    });
   } catch (err) {
     res.send({ error: err.message });
   }

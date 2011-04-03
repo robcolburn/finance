@@ -18,12 +18,8 @@ j(function(){
       if (inputs.is(':visible')) {
         data = j('#add-item-form').serialize();
         j.post('/item', data, function(res){
-          if (res.error) {
-            notify('error', res.error);
-          } else {
-            notify('added item');
-            hideAddItemForm();
-          }
+          response(res);
+          if (!res.error) hideAddItemForm();
         });
       } else {
         showAddItemForm();
@@ -42,6 +38,15 @@ function notify(type, msg, duration) {
       el.remove();
     });
   }, duration);
+}
+
+function response(res) {
+  if (res.error) {
+    notify('error', res.error);
+  } else {
+    if (res.message) notify(res.message);
+    if (res.prepend) j(res.to).prepend(res.prepend);
+  }
 }
 
 function showAddItemForm() {

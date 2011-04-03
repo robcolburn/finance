@@ -20,11 +20,18 @@ function compile(str, path) {
     .set('paths', [tablet.path]);
 }
 
-// parse json dates
+// - parse json dates
+// - order items by date
 
-function parseDates() {
+function normalize() {
+  // dates
   db.items.forEach(function(item){
     item.date = new Date(item.date);
+  });
+
+  // sort by date descending
+  db.items = db.items.sort(function(a, b){
+    return b.date - a.date;
   });
 }
 
@@ -44,13 +51,13 @@ app.configure(function(){
 
 app.configure('development', function(){
   db = new Database('/tmp/finance.db');
-  db.load(parseDates);
+  db.load(normalize);
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
 });
 
 app.configure('production', function(){
   db = new Database('/Users/tj/dropbox/documents/finance.db');
-  db.load(parseDates);
+  db.load(normalize);
   app.use(express.errorHandler());
 });
 
