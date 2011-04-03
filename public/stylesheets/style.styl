@@ -1,0 +1,37 @@
+
+@import 'tablet/buttons'
+
+// mixins
+
+notification(color)
+  margin: 3px 0
+  padding: 8px 15px
+  border: 1px solid color
+  background: color + 95%
+  font-size: 12px
+  color: color
+
+// styles
+
+body
+  padding: 50px
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
+
+a
+  color: #00B7FF
+  text-decoration: none
+  &:hover
+    text-decoration: underline
+
+input[type='submit']
+  bold-button()
+
+ul#notifications
+  margin: 0
+  padding: 0
+  li
+    list-style: none
+    &.error
+      notification: #c00
+    &.info
+      notification: #0DAAF3

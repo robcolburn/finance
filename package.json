@@ -1,0 +1,14 @@
+{
+  "name": "finance",
+  "description": "Financial management app",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+      "express": "2.x"
+    , "express-resource": ">= 0.0.1"
+    , "jade": "0.9.x"
+    , "github-flavored-markdown": "1.0.0"
+    , "stylus": "0.11.x"
+  },
+  "engines": { "node": ">= 0.4.4" }
+}
