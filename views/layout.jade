@@ -6,3 +6,12 @@ html
     script(src='/javascripts/main.js')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body!= body
+  
+  //  script#confirm(type='text/template')
+  div#confirmation.dialog
+    .message Message
+    .actions
+      a(href='#').ok OK
+      a(href='#').cancel Cancel
+
+  div#overlay
