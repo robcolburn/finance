@@ -1,0 +1,21 @@
+--- 
+- !ruby/object:Pomo::Task 
+  complete: false
+  description: 
+  length: 25
+  name: form reset
+- !ruby/object:Pomo::Task 
+  complete: false
+  description: 
+  length: 25
+  name: debit / credit
+- !ruby/object:Pomo::Task 
+  complete: false
+  description: 
+  length: 25
+  name: months 'sheets'
+- !ruby/object:Pomo::Task 
+  complete: false
+  description: 
+  length: 25
+  name: charts / reporting
