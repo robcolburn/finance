@@ -10,6 +10,9 @@ a {
 a:hover {
   text-decoration: underline;
 }
+.hide {
+  display: none;
+}
 form p {
   margin: 0;
 }

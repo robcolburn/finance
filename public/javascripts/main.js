@@ -20,6 +20,7 @@ j(function(){
         data = j('#add-item-form').serialize();
         j.post('/item', data, function(res){
           response(res);
+          j('#items').removeClass('hide');
           if (!res.error) hideAddItemForm();
         });
       } else {
