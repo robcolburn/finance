@@ -63,7 +63,8 @@ ul#notifications
 // items table
 
 table#items
-  margin-top 50px
+  width: 80%
+  margin-top: 50px
   border-collapse: collapse
   thead
     tr
@@ -75,7 +76,9 @@ table#items
       &:last-child
         border-bottom: none
       td
-        padding 10px 25px
+        padding 5px 25px
         &.amount
           text-align: right
           color: light
+        &.delete a
+          bold-button()

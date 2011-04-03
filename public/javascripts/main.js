@@ -7,6 +7,7 @@ j(document).keypress(function(event){
 });
 
 j(function(){
+  // add item
   j('#add-item-form')
     .find('p:not(.actions)')
     .hide()
@@ -26,6 +27,14 @@ j(function(){
       }
       return false;
     });
+
+  // remove item
+  j('#items .delete a').live('click', function(){
+    var url = j(this).attr('href');
+    remove(j(this).parents('tr'));
+    j.post(url, { _method: 'DELETE' }, response);
+    return false;
+  });
 });
 
 function notify(type, msg, duration) {
@@ -34,10 +43,14 @@ function notify(type, msg, duration) {
   var el = j('<li class="' + type + '">' + msg + '</li>');
   j('#notifications').append(el);
   setTimeout(function(){
-    el.fadeOut(function(){
-      el.remove();
-    });
+    remove(el);
   }, duration);
+}
+
+function remove(el) {
+  j(el).fadeOut(function(){
+    j(el).remove();
+  });
 }
 
 function response(res) {

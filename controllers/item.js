@@ -58,3 +58,14 @@ exports.create = function(req, res, next){
     res.send({ error: err.message });
   }
 };
+
+/**
+ * Destroy an item.
+ */
+
+exports.destroy = function(req, res, next){
+  var id = req.params.id;
+  db.items.splice(id, 1);
+  db.save();
+  res.send({ message: 'Removed item' });
+};
