@@ -43,13 +43,13 @@ exports.create = function(req, res, next){
     validate(item, 'date', 'date');
     validate(item, 'category');
     validate(item, 'amount', 'number');
-    var len = (db.items = db.items || []).push(item);
-    item.id = len - 1;
+    item.id = db.ids++;
+    db.items[item.id] = item;
     db.save();
     res.partial('item', { object: item }, function(err, html){
       if (err) return next(err);
       res.send({
-          message: 'Added item'
+          message: 'Added item #' + item.id
         , prepend: html
         , to: '#items'
       });
@@ -67,5 +67,5 @@ exports.destroy = function(req, res, next){
   var id = req.params.id;
   db.items.splice(id, 1);
   db.save();
-  res.send({ message: 'Removed item' });
+  res.send({ message: 'Removed item #' + id });
 };

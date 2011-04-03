@@ -21,18 +21,19 @@ function compile(str, path) {
 }
 
 // - parse json dates
-// - order items by date
+// - set lengths
 
 function normalize() {
+  var ids = Object.keys(db.items);
+
   // dates
-  db.items.forEach(function(item){
+  ids.forEach(function(id){
+    var item = db.items[id];
     item.date = new Date(item.date);
   });
 
-  // sort by date descending
-  db.items = db.items.sort(function(a, b){
-    return b.date - a.date;
-  });
+  // length
+  db.items.length = ids.length;
 }
 
 // configuration

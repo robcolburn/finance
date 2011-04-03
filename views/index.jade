@@ -13,14 +13,15 @@ form#add-item-form
   p.actions
     input#add-item(type='submit', value='Add')
 
-table#items
-  thead
-    tr
-      th
-      th Amount
-      th Comment
-      th Category
-      th Tags
-      th Date
-  tbody
-    != partial('item', items)
+- if (items.length)
+  table#items
+    thead
+      tr
+        th
+        th Amount
+        th Comment
+        th Category
+        th Tags
+        th Date
+    tbody
+      != partial('item', items)
