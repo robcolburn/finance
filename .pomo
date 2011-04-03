@@ -19,3 +19,8 @@
   description: 
   length: 25
   name: charts / reporting
+- !ruby/object:Pomo::Task 
+  complete: false
+  description: 
+  length: 25
+  name: in-place editing
