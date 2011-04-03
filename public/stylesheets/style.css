@@ -96,12 +96,13 @@ ul#notifications li.info {
   color: #0daaf3;
 }
 table#items {
-  width: 80%;
+  width: 100%;
   margin-top: 50px;
   border-collapse: collapse;
 }
 table#items thead tr th {
-  padding: 10px 0;
+  padding: 10px 10px 10px 0;
+  text-align: right;
 }
 table#items tbody tr {
   border-bottom: 1px solid #eee;
@@ -110,11 +111,21 @@ table#items tbody tr:last-child {
   border-bottom: none;
 }
 table#items tbody tr td {
-  padding: 5px 25px;
+  border-right: 1px solid #eee;
+  padding: 2px 15px;
+  text-align: right;
+}
+table#items tbody tr td:last-child {
+  border-right: none;
+}
+table#items tbody tr td.entity {
+  text-align: left;
 }
 table#items tbody tr td.amount {
-  text-align: right;
   color: #a9a9a9;
+}
+table#items tbody tr td.delete {
+  width: 70px;
 }
 table#items tbody tr td.delete a {
   display: block;
