@@ -67,5 +67,5 @@ exports.destroy = function(req, res, next){
   var id = req.params.id;
   delete db.items[id];
   db.save();
-  res.send({ message: 'Removed item #' + id });
+  res.send({});
 };
