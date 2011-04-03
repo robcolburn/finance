@@ -1,6 +1,11 @@
 
 @import 'tablet/buttons'
 
+// colors
+
+light = #a9a9a9
+lighter = #eee
+
 // mixins
 
 notification(color)
@@ -11,11 +16,15 @@ notification(color)
   font-size: 12px
   color: color
 
-// styles
+smooth()
+  -webkit-font-smoothing: antialiased
+
+// general
 
 body
   padding: 50px
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
+  font: 14px 'helvetica neue', helvetica, arial, sans-serif
+  smooth()
 
 a
   color: #00B7FF
@@ -23,8 +32,23 @@ a
   &:hover
     text-decoration: underline
 
-input[type='submit']
-  bold-button()
+// forms
+
+form
+  p
+    margin: 0
+    &.actions
+      margin-top 15px
+  input[type='text']
+    padding: 8px 10px
+    outline: none
+    border-radius: 5px
+    border: 1px solid lighter
+    color: light
+  input[type='submit']
+    bold-button()
+
+// notifications
 
 ul#notifications
   margin: 0
@@ -35,3 +59,23 @@ ul#notifications
       notification: #c00
     &.info
       notification: #0DAAF3
+
+// items table
+
+table#items
+  margin-top 50px
+  border-collapse: collapse
+  thead
+    tr
+      th
+        padding: 10px 0
+  tbody
+    tr
+      border-bottom: 1px solid #eee
+      &:last-child
+        border-bottom: none
+      td
+        padding 10px 25px
+        &.amount
+          text-align: right
+          color: light

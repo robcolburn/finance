@@ -1,7 +1,7 @@
 tr
-  td= item.entity
-  td $#{item.amount}
-  td= item.comment
-  td= item.category
-  td= item.tags.join(', ')
-  td= date('mm/dd/yy', item.date)
+  td.entity= item.entity
+  td.amount= item.amount
+  td.comment= item.comment
+  td.category= item.category
+  td.tags= item.tags.join(', ')
+  td.date= date('mm/dd/yy', item.date)
