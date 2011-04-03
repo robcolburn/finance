@@ -56,8 +56,9 @@ app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
 });
 
-app.configure('production', function(){
-  db = new Database('/Users/tj/dropbox/documents/finance.db');
+app.configure('tj', function(){
+  app.set('title', "TJ's Financial Management");
+  db = new Database('/Users/tj/dropbox/documents/finances-tj.db');
   db.load(normalize);
   app.use(express.errorHandler());
 });
