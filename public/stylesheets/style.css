@@ -10,9 +10,6 @@ a {
 a:hover {
   text-decoration: underline;
 }
-.hide {
-  display: none;
-}
 form p {
   margin: 0;
 }
@@ -204,6 +201,15 @@ ul#notifications li.info {
   height: 100%;
   background: rgba(0,0,0,0.8);
   z-index: 500;
+  -webkit-transition: opacity 0.3s ease-out;
+  opacity: 1;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  visibility: visible;
+}
+#overlay.hide {
+  opacity: 0;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  visibility: hidden;
 }
 table#items {
   width: 100%;

@@ -7,11 +7,11 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
   body!= body
   
-  //  script#confirm(type='text/template')
-  div#confirmation.dialog
-    .message Message
-    .actions
-      a(href='#').ok OK
-      a(href='#').cancel Cancel
+  script#confirm(type='text/template')
+    div#confirmation.dialog
+      .message Message
+      .actions
+        a(href='#').ok OK
+        a(href='#').cancel Cancel
 
-  div#overlay
+  div#overlay.hide

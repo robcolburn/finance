@@ -46,9 +46,6 @@ a
   &:hover
     text-decoration: underline
 
-.hide
-  display: none
-
 // forms
 
 form
@@ -106,6 +103,12 @@ ul#notifications
   height: 100%
   background: rgba(black, 0.8)
   z-index: 500
+  -webkit-transition opacity 0.3s ease-out
+  opacity: 1
+  visibility: visible
+  &.hide
+    opacity: 0
+    visibility: hidden
 
 // items table
 
