@@ -62,7 +62,7 @@ app.configure('tj', function(){
   app.set('title', "TJ's Financial Management");
   db = new Database('/Users/tj/dropbox/documents/finances-tj.db');
   db.load(normalize);
-  app.use(express.errorHandler());
+  app.use(express.errorHandler({ dumpExceptions: true }));
 });
 
 // routing

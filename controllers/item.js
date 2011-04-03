@@ -65,7 +65,7 @@ exports.create = function(req, res, next){
 
 exports.destroy = function(req, res, next){
   var id = req.params.id;
-  db.items.splice(id, 1);
+  delete db.items[id];
   db.save();
   res.send({ message: 'Removed item #' + id });
 };
