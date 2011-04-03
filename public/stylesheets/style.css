@@ -49,7 +49,7 @@ form input[type="submit"] {
   text-align: center;
   text-shadow: 0 -1px 0 #2b2b2b;
   color: #fff;
-  padding: 5px 5px 6px 5px;
+  padding: 5px 8px 6px 8px;
 }
 form input[type="submit"]:hover,
 form input[type="submit"].hover {
@@ -156,7 +156,7 @@ ul#notifications li.info {
   text-align: center;
   text-shadow: 0 -1px 0 #2b2b2b;
   color: #fff;
-  padding: 5px 5px 6px 5px;
+  padding: 5px 8px 6px 8px;
 }
 .dialog .actions a:hover,
 .dialog .actions a.hover {
@@ -258,7 +258,7 @@ table#items tbody tr td.delete a {
   text-align: center;
   text-shadow: 0 -1px 0 #2b2b2b;
   color: #fff;
-  padding: 5px 5px 6px 5px;
+  padding: 5px 8px 6px 8px;
 }
 table#items tbody tr td.delete a:hover,
 table#items tbody tr td.delete a.hover {
