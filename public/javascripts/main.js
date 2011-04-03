@@ -1,35 +1,13 @@
 
 var j = $;
 
-j(document).keypress(function(event){
-  // a
-  if (97 == event.keyCode) showAddItemForm();
-});
-
 j(function(){
   // add item
-  j('#add-item-form')
-    .find('p:not(.actions)')
-    .hide()
-    .end()
-    .find('#add-item')
-    .click(function(){
-      var inputs = j('#add-item-form p:not(.actions)')
-        , data;
-      if (inputs.is(':visible')) {
-        data = j('#add-item-form').serialize();
-        j.post('/item', data, function(res){
-          response(res);
-          if (!res.error) {
-            hideAddItemForm();
-            j('#items').removeClass('hide');
-          }
-        });
-      } else {
-        showAddItemForm();
-      }
-      return false;
-    });
+  j('.item-edit').submit(function(){
+    var data = j(this).serialize();
+    j.post('/item', data, response);
+    return false;
+  });
 
   // remove item
   j('#items .delete a').live('click', function(){
@@ -62,7 +40,7 @@ function confirm(msg, fn) {
       overlay.addClass('hide');
       dialog.remove();
       fn(val);
-    };
+    }
   }
 
   dialog.find('.message').text(msg);
@@ -85,12 +63,4 @@ function response(res) {
     if (res.message) notify(res.message);
     if (res.prepend) j(res.to).prepend(res.prepend);
   }
-}
-
-function showAddItemForm() {
-  j('#add-item-form p:not(.actions)').show();
-}
-
-function hideAddItemForm() {
-  j('#add-item-form p:not(.actions)').hide();
 }

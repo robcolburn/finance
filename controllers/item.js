@@ -37,7 +37,9 @@ function validate(obj, prop, type) {
 exports.create = function(req, res, next){
   var item = req.body.item;
   item.date = utils.parseDate(item.date);
-  item.tags = item.tags.split(/ *, */);
+  item.tags = item.tags
+    ? item.tags.split(/ *, */)
+    : [];
   try {
     validate(item, 'entity');
     validate(item, 'date', 'date');
