@@ -80,7 +80,7 @@ ul#notifications li {
   list-style: none;
 }
 ul#notifications li.error {
-  margin: 3px 0;
+  margin: 8px 0;
   padding: 8px 15px;
   border: 1px solid #c00;
   background: #ff8f8f;
@@ -88,7 +88,7 @@ ul#notifications li.error {
   color: #c00;
 }
 ul#notifications li.info {
-  margin: 3px 0;
+  margin: 8px 0;
   padding: 8px 15px;
   border: 1px solid #0daaf3;
   background: #f5fbfe;

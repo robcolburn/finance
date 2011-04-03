@@ -20,8 +20,10 @@ j(function(){
         data = j('#add-item-form').serialize();
         j.post('/item', data, function(res){
           response(res);
-          j('#items').removeClass('hide');
-          if (!res.error) hideAddItemForm();
+          if (!res.error) {
+            hideAddItemForm();
+            j('#items').removeClass('hide');
+          }
         });
       } else {
         showAddItemForm();
@@ -40,7 +42,7 @@ j(function(){
 
 function notify(type, msg, duration) {
   if (!msg) msg = type, type = 'info';
-  duration = duration || 3000;
+  duration = duration || 2000;
   var el = j('<li class="' + type + '">' + msg + '</li>');
   j('#notifications').append(el);
   setTimeout(function(){
