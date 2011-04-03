@@ -33,10 +33,11 @@ j(function(){
 
   // remove item
   j('#items .delete a').live('click', function(){
+    var self = j(this);
     confirm('Delete this item?', function(ok){
       if (ok) {
-        var url = j(this).attr('href');
-        remove(j(this).parents('tr'));
+        var url = self.attr('href');
+        remove(self.parents('tr'));
         j.post(url, { _method: 'DELETE' }, response);
       }
     });
@@ -53,12 +54,22 @@ function notify(type, msg, duration) {
 }
 
 function confirm(msg, fn) {
-  var dialog = j(j('#confirm').html());
+  var dialog = j(j('#confirm').html())
+    , overlay = j('#overlay');
+
+  function reply(val) {
+    return function(){
+      overlay.addClass('hide');
+      dialog.remove();
+      fn(val);
+    };
+  }
+
   dialog.find('.message').text(msg);
-  dialog.find('.ok').click(function(){ fn(true); });
-  dialog.find('.cancel').click(function(){ fn(false); });
-  j(document).append(dialog);
-  j('#overlay').removeClass('hide');
+  dialog.find('.ok').click(reply(true));
+  dialog.find('.cancel').click(reply(false));
+  dialog.appendTo('body');
+  overlay.removeClass('hide');
 }
 
 function remove(el) {
