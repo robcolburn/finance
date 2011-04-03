@@ -83,6 +83,12 @@ form input[type="submit"]:active {
   -moz-box-shadow: inset 0 0 5px 1px rgba(0,0,0,0.6);
   box-shadow: inset 0 0 5px 1px rgba(0,0,0,0.6);
 }
+form input[type="submit"]:focus {
+  outline: none;
+  -webkit-box-shadow: inset 0 0 3px 1px rgba(0,171,250,0.6), inset 0 -1px 0 0 #00abfa, 0 0 3px 1px rgba(0,171,250,0.5);
+  -moz-box-shadow: inset 0 0 3px 1px rgba(0,171,250,0.6), inset 0 -1px 0 0 #00abfa, 0 0 3px 1px rgba(0,171,250,0.5);
+  box-shadow: inset 0 0 3px 1px rgba(0,171,250,0.6), inset 0 -1px 0 0 #00abfa, 0 0 3px 1px rgba(0,171,250,0.5);
+}
 ul#notifications {
   margin: 0;
   padding: 0;
@@ -184,6 +190,12 @@ ul#notifications li.info {
   -moz-box-shadow: inset 0 0 5px 1px rgba(0,0,0,0.6);
   box-shadow: inset 0 0 5px 1px rgba(0,0,0,0.6);
 }
+.dialog .actions a:focus {
+  outline: none;
+  -webkit-box-shadow: inset 0 0 3px 1px rgba(0,171,250,0.6), inset 0 -1px 0 0 #00abfa, 0 0 3px 1px rgba(0,171,250,0.5);
+  -moz-box-shadow: inset 0 0 3px 1px rgba(0,171,250,0.6), inset 0 -1px 0 0 #00abfa, 0 0 3px 1px rgba(0,171,250,0.5);
+  box-shadow: inset 0 0 3px 1px rgba(0,171,250,0.6), inset 0 -1px 0 0 #00abfa, 0 0 3px 1px rgba(0,171,250,0.5);
+}
 #overlay {
   position: absolute;
   top: 0;
@@ -279,4 +291,10 @@ table#items tbody tr td.delete a:active {
   -webkit-box-shadow: inset 0 0 5px 1px rgba(0,0,0,0.6);
   -moz-box-shadow: inset 0 0 5px 1px rgba(0,0,0,0.6);
   box-shadow: inset 0 0 5px 1px rgba(0,0,0,0.6);
+}
+table#items tbody tr td.delete a:focus {
+  outline: none;
+  -webkit-box-shadow: inset 0 0 3px 1px rgba(0,171,250,0.6), inset 0 -1px 0 0 #00abfa, 0 0 3px 1px rgba(0,171,250,0.5);
+  -moz-box-shadow: inset 0 0 3px 1px rgba(0,171,250,0.6), inset 0 -1px 0 0 #00abfa, 0 0 3px 1px rgba(0,171,250,0.5);
+  box-shadow: inset 0 0 3px 1px rgba(0,171,250,0.6), inset 0 -1px 0 0 #00abfa, 0 0 3px 1px rgba(0,171,250,0.5);
 }
