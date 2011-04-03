@@ -72,3 +72,4 @@ app.resource('item', require('./controllers/item'));
 
 app.listen(3000);
 console.log("Express server listening on port %d", app.address().port);
+console.log('  database: %s', db.path);
