@@ -20,6 +20,14 @@ function compile(str, path) {
     .set('paths', [tablet.path]);
 }
 
+// parse json dates
+
+function parseDates() {
+  db.items.forEach(function(item){
+    item.date = new Date(item.date);
+  });
+}
+
 // configuration
 
 app.configure(function(){
@@ -36,13 +44,13 @@ app.configure(function(){
 
 app.configure('development', function(){
   db = new Database('/tmp/finance.db');
-  db.load();
+  db.load(parseDates);
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
 });
 
 app.configure('production', function(){
   db = new Database('/Users/tj/dropbox/documents/finance.db');
-  db.load();
+  db.load(parseDates);
   app.use(express.errorHandler());
 });
 

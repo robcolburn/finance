@@ -12,3 +12,15 @@ form#add-item-form
     input(type='text', name='item[tags]', placeholder='tags')
   p.actions
     input#add-item(type='submit', value='Add')
+
+table#items
+  thead
+    tr
+      th
+      th Comment
+      th Amount
+      th Category
+      th Tags
+      th Date
+  tbody
+    != partial('item', items)

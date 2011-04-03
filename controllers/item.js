@@ -44,7 +44,8 @@ exports.create = function(req, res){
     validate(item, 'category');
     validate(item, 'amount', 'number');
     res.send(item);
-    (db.items = db.items || []).push(item);
+    var len = (db.items = db.items || []).push(item);
+    item.id = len - 1;
     db.save();
   } catch (err) {
     res.send({ error: err.message });
