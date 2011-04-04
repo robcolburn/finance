@@ -39,3 +39,8 @@
   description: 
   length: 25
   name: printing
+- !ruby/object:Pomo::Task 
+  complete: false
+  description: 
+  length: 25
+  name: client-side render only (jade)
