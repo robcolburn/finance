@@ -19,13 +19,17 @@ function validate(obj, prop, type) {
     case 'number':
       val = parseFloat(val);
       if (isNaN(val)) throw new Error(prop + ' must be a number');
+      obj[prop] = val;
       break;
     case 'present':
       if (!val) throw new Error(prop + ' required');
       break;
     case 'date':
+      validate(obj, prop, 'present');
+      val = utils.parseDate(val);
       if (!(val instanceof Date)) throw new Error(prop + ' must be a date');
       if (isNaN(val.getTime())) throw new Error(prop + ' is an invalid date');
+      obj[prop] = val;
       break;
   }
 }
@@ -44,7 +48,6 @@ exports.index = function(req, res){
 
 exports.create = function(req, res, next){
   var item = req.body.item;
-  item.date = utils.parseDate(item.date);
   item.tags = item.tags
     ? item.tags.split(/ *, */)
     : [];

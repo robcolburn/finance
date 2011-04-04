@@ -109,13 +109,14 @@ function data(items, prop) {
 
   Object.keys(items).forEach(function(id){
     var item = items[id];
-    sums[item[prop]] = sums[item[prop]] || 0;
-    sums[item[prop]]++;
+    sums[item[prop]] = sums[item[prop]] || { count: 0, amount: 0 };
+    sums[item[prop]].count++;
+    sums[item[prop]].amount += item.amount;
   });
 
   Object.keys(sums).forEach(function(name){
-    obj.names.push(name);
-    obj.data.push(sums[name]);
+    obj.names.push(name + ' (' + sums[name].count + ')');
+    obj.data.push(sums[name].amount);
   });
 
   return obj;
