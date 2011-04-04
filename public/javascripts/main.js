@@ -85,28 +85,29 @@ function response(res) {
 
 function chart() {
   $.get('/items', function(items){
-    updateCategoryChart(items);
-    updateEntityChart(items);
-    updateTagChart(items);
+    var size = 100;
+    categoryChart(items, size);
+    entityChart(items, size);
+    tagChart(items, size);
   });
 }
 
-function updateCategoryChart(items) {
+function categoryChart(items, size) {
   var r = Raphael('category-chart')
     , category = data(items, 'category');
-  r.g.piechart(200, 200, 100, category.data, { legend: category.names });
+  r.g.piechart(size, size, size, category.data, { legend: category.names });
 }
 
-function updateEntityChart(items) {
+function entityChart(items, size) {
   var r = Raphael('entity-chart')
     , tag = data(items, 'entity');
-  r.g.piechart(200, 200, 100, tag.data, { legend: tag.names });
+  r.g.piechart(size, size, size, tag.data, { legend: tag.names });
 }
 
-function updateTagChart(items) {
+function tagChart(items, width, height) {
   var r = Raphael('tag-chart')
     , tag = data(items, 'tag');
-  r.g.piechart(200, 200, 100, tag.data, { legend: tag.names });
+  r.g.piechart(size, size, size, tag.data, { legend: tag.names });
 }
 
 function data(items, prop) {
