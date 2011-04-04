@@ -29,6 +29,9 @@ j(function(){
     });
     return false;
   });
+
+  // graph
+  graph();
 });
 
 function notify(type, msg, duration) {
@@ -74,4 +77,30 @@ function response(res) {
     if (res.prepend) j(res.to).prepend(res.prepend);
     if (res.append) j(res.to).append(res.append);
   }
+}
+
+function graph() {
+  $.get('/items', function(items){
+    var r = Raphael('pie-chart')
+      , category = categoryData(items);
+    r.g.piechart(200, 200, 100, category.data, { legend: category.names });
+  });
+}
+
+function categoryData(items) {
+  var obj = { names: [], data: [] }
+    , sums = {};
+
+  Object.keys(items).forEach(function(id){
+    var item = items[id];
+    sums[item.category] = sums[item.category] || 0;
+    sums[item.category]++;
+  });
+
+  Object.keys(sums).forEach(function(name){
+    obj.names.push(name);
+    obj.data.push(sums[name]);
+  });
+
+  return obj;
 }
