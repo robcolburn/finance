@@ -63,7 +63,7 @@ app.configure('tj', function(){
 // routing
 
 app.get('/', main.index);
-app.resource('item', require('./controllers/item'));
+app.resource('items', require('./controllers/item'));
 
 // listen
 

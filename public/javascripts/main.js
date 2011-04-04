@@ -7,7 +7,7 @@ j(function(){
   // add item
   j('#items-form').submit(function(){
     var data = j(this).serialize();
-    j.post('/item', data, function(res){
+    j.post('/items', data, function(res){
       response(res);
       if (!res.error) {
         j('.edit-item').remove();
