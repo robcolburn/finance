@@ -2,10 +2,16 @@
 var j = $;
 
 j(function(){
+  var addItem = j('.item-edit').html();
+
   // add item
-  j('.item-edit').submit(function(){
+  j('#items-form').submit(function(){
     var data = j(this).serialize();
-    j.post('/item', data, response);
+    j.post('/item', data, function(ok){
+      j('.edit-items').remove();
+      response(ok);
+      j('#items-form').append(addItem);
+    });
     return false;
   });
 
@@ -62,5 +68,6 @@ function response(res) {
   } else {
     if (res.message) notify(res.message);
     if (res.prepend) j(res.to).prepend(res.prepend);
+    if (res.append) j(res.to).append(res.append);
   }
 }

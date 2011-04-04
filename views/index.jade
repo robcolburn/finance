@@ -1,14 +1,15 @@
 ul#notifications
 
-table#items
-  thead
-    tr
-      th
-      th Amount
-      th Comment
-      th Category
-      th Tags
-      th Date
-  tbody
-    != partial('item', { collection: items })
-    != partial('item/form')
+form#items-form
+  table#items
+    thead
+      tr
+        th
+        th Amount
+        th Comment
+        th Category
+        th Tags
+        th Date
+    tbody
+      != partial('item', { collection: items })
+      != partial('item/form')

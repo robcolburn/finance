@@ -1,16 +1,15 @@
-form.item-edit
-  tr
-    td.entity
-      input(type='text', name='item[entity]', placeholder='from / to')
-    td.amount
-      input(type='text', name='item[amount]', placeholder='amount')
-    td.comment
-      input(type='text', name='item[comment]', placeholder='comment')
-    td.category
-      input(type='text', name='item[category]', placeholder='category')
-    td.tags
-      input(type='text', name='item[tags]', placeholder='tags')
-    td.date
-      input(type='text', name='item[date]', value=date('mm/dd/yy'))
-    td
-      input(type='submit', value='Add Item')
+tr.edit-item
+  td.entity
+    input(type='text', name='item[entity]', placeholder='from / to')
+  td.amount
+    input(type='text', name='item[amount]', placeholder='amount')
+  td.comment
+    input(type='text', name='item[comment]', placeholder='comment')
+  td.category
+    input(type='text', name='item[category]', placeholder='category')
+  td.tags
+    input(type='text', name='item[tags]', placeholder='tags')
+  td.date
+    input(type='text', name='item[date]', value=date('mm/dd/yy'))
+  td
+    input(type='submit', value='Add Item')
