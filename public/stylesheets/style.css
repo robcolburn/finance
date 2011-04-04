@@ -20,6 +20,11 @@ input[type="text"] {
   border: 1px solid #eee;
   color: #a9a9a9;
 }
+input[type="text"]:focus {
+  -webkit-box-shadow: 0 1px 1px 0 rgba(0,171,250,0.6), 0 0 3px 1px rgba(0,171,250,0.3);
+  -moz-box-shadow: 0 1px 1px 0 rgba(0,171,250,0.6), 0 0 3px 1px rgba(0,171,250,0.3);
+  box-shadow: 0 1px 1px 0 rgba(0,171,250,0.6), 0 0 3px 1px rgba(0,171,250,0.3);
+}
 input[type="submit"] {
   display: block;
   text-decoration: none;
