@@ -88,7 +88,6 @@ function chart() {
     var size = 100;
     categoryChart(items, size);
     entityChart(items, size);
-    tagChart(items, size);
   });
 }
 
@@ -101,12 +100,6 @@ function categoryChart(items, size) {
 function entityChart(items, size) {
   var r = Raphael('entity-chart')
     , tag = data(items, 'entity');
-  r.g.piechart(size, size, size, tag.data, { legend: tag.names });
-}
-
-function tagChart(items, width, height) {
-  var r = Raphael('tag-chart')
-    , tag = data(items, 'tag');
   r.g.piechart(size, size, size, tag.data, { legend: tag.names });
 }
 
