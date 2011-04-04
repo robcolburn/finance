@@ -49,10 +49,10 @@ function confirm(msg, fn) {
     }
   }
 
-  dialog.find('.message').text(msg);
-  dialog.find('.ok').click(reply(true));
-  dialog.find('.cancel').click(reply(false));
   dialog.appendTo('body');
+  dialog.find('.message').text(msg);
+  dialog.find('.ok').click(reply(true)).focus();
+  dialog.find('.cancel').click(reply(false));
   overlay.removeClass('hide');
 }
 
