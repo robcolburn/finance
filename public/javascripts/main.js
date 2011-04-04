@@ -86,23 +86,37 @@ function response(res) {
 function chart() {
   $.get('/items', function(items){
     updateCategoryChart(items);
+    updateEntityChart(items);
+    updateTagChart(items);
   });
 }
 
 function updateCategoryChart(items) {
-  var r = Raphael('pie-chart')
-    , category = categoryData(items);
+  var r = Raphael('category-chart')
+    , category = data(items, 'category');
   r.g.piechart(200, 200, 100, category.data, { legend: category.names });
 }
 
-function categoryData(items) {
+function updateEntityChart(items) {
+  var r = Raphael('entity-chart')
+    , tag = data(items, 'entity');
+  r.g.piechart(200, 200, 100, tag.data, { legend: tag.names });
+}
+
+function updateTagChart(items) {
+  var r = Raphael('tag-chart')
+    , tag = data(items, 'tag');
+  r.g.piechart(200, 200, 100, tag.data, { legend: tag.names });
+}
+
+function data(items, prop) {
   var obj = { names: [], data: [] }
     , sums = {};
 
   Object.keys(items).forEach(function(id){
     var item = items[id];
-    sums[item.category] = sums[item.category] || 0;
-    sums[item.category]++;
+    sums[item[prop]] = sums[item[prop]] || 0;
+    sums[item[prop]]++;
   });
 
   Object.keys(sums).forEach(function(name){
