@@ -7,10 +7,12 @@ j(function(){
   // add item
   j('#items-form').submit(function(){
     var data = j(this).serialize();
-    j.post('/item', data, function(ok){
-      j('.edit-item').remove();
-      response(ok);
-      j('#items-form tbody').append(addItem);
+    j.post('/item', data, function(res){
+      response(res);
+      if (!res.error) {
+        j('.edit-item').remove();
+        j('#items-form tbody').append(addItem);
+      }
     });
     return false;
   });
