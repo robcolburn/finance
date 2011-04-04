@@ -37,7 +37,9 @@ function validate(obj, prop, type) {
 exports.create = function(req, res, next){
   var item = req.body.item;
   item.date = utils.parseDate(item.date);
-  item.tags = item.tags.split(/ *, */);
+  item.tags = item.tags
+    ? item.tags.split(/ *, */)
+    : [];
   try {
     validate(item, 'entity');
     validate(item, 'date', 'date');
@@ -48,11 +50,7 @@ exports.create = function(req, res, next){
     db.save();
     res.partial('item', { object: item }, function(err, html){
       if (err) return next(err);
-      res.send({
-          message: 'Added item #' + item.id
-        , prepend: html
-        , to: '#items'
-      });
+      res.send({ append: html, to: '#items' });
     });
   } catch (err) {
     res.send({ error: err.message });

@@ -1,35 +1,19 @@
 
 var j = $;
 
-j(document).keypress(function(event){
-  // a
-  if (97 == event.keyCode) showAddItemForm();
-});
-
 j(function(){
+  var addItem = j('.edit-item').get(0).outerHTML;
+
   // add item
-  j('#add-item-form')
-    .find('p:not(.actions)')
-    .hide()
-    .end()
-    .find('#add-item')
-    .click(function(){
-      var inputs = j('#add-item-form p:not(.actions)')
-        , data;
-      if (inputs.is(':visible')) {
-        data = j('#add-item-form').serialize();
-        j.post('/item', data, function(res){
-          response(res);
-          if (!res.error) {
-            hideAddItemForm();
-            j('#items').removeClass('hide');
-          }
-        });
-      } else {
-        showAddItemForm();
-      }
-      return false;
+  j('#items-form').submit(function(){
+    var data = j(this).serialize();
+    j.post('/item', data, function(ok){
+      j('.edit-item').remove();
+      response(ok);
+      j('#items-form tbody').append(addItem);
     });
+    return false;
+  });
 
   // remove item
   j('#items .delete a').live('click', function(){
@@ -62,13 +46,15 @@ function confirm(msg, fn) {
       overlay.addClass('hide');
       dialog.remove();
       fn(val);
-    };
+    }
   }
 
-  dialog.find('.message').text(msg);
-  dialog.find('.ok').click(reply(true));
-  dialog.find('.cancel').click(reply(false));
-  dialog.appendTo('body');
+  dialog
+    .appendTo('body')
+    .find('.message').text(msg).end()
+    .find('.ok').click(reply(true)).focus().end()
+    .find('.cancel').click(reply(false));
+
   overlay.removeClass('hide');
 }
 
@@ -84,13 +70,6 @@ function response(res) {
   } else {
     if (res.message) notify(res.message);
     if (res.prepend) j(res.to).prepend(res.prepend);
+    if (res.append) j(res.to).append(res.append);
   }
-}
-
-function showAddItemForm() {
-  j('#add-item-form p:not(.actions)').show();
-}
-
-function hideAddItemForm() {
-  j('#add-item-form p:not(.actions)').hide();
 }

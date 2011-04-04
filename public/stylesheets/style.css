@@ -10,13 +10,8 @@ a {
 a:hover {
   text-decoration: underline;
 }
-form p {
-  margin: 0;
-}
-form p.actions {
-  margin-top: 15px;
-}
-form input[type="text"] {
+input[type="text"] {
+  margin: 5px 0;
   padding: 8px 10px;
   outline: none;
   -webkit-border-radius: 5px;
@@ -25,7 +20,7 @@ form input[type="text"] {
   border: 1px solid #eee;
   color: #a9a9a9;
 }
-form input[type="submit"] {
+input[type="submit"] {
   display: block;
   text-decoration: none;
   font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
@@ -48,8 +43,8 @@ form input[type="submit"] {
   color: #fff;
   padding: 5px 8px 6px 8px;
 }
-form input[type="submit"]:hover,
-form input[type="submit"].hover {
+input[type="submit"]:hover,
+input[type="submit"].hover {
 #383838
   background: #383838;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #4d4d4d), color-stop(1, #383838));
@@ -59,8 +54,8 @@ form input[type="submit"].hover {
   -moz-box-shadow: inset 0 1px 1px 0 #838383;
   box-shadow: inset 0 1px 1px 0 #838383;
 }
-form input[type="submit"]:active,
-form input[type="submit"].active {
+input[type="submit"]:active,
+input[type="submit"].active {
 #292929
   background: #292929;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #292929), color-stop(1, #3e3e3e));
@@ -70,17 +65,17 @@ form input[type="submit"].active {
   -moz-box-shadow: inset 0 -1px 1px 0 #5c5c5c;
   box-shadow: inset 0 -1px 1px 0 #5c5c5c;
 }
-form input[type="submit"]:hover {
+input[type="submit"]:hover {
   -webkit-box-shadow: inset 0 0 3px 1px rgba(0,171,250,0.6), inset 0 -1px 0 0 #00abfa;
   -moz-box-shadow: inset 0 0 3px 1px rgba(0,171,250,0.6), inset 0 -1px 0 0 #00abfa;
   box-shadow: inset 0 0 3px 1px rgba(0,171,250,0.6), inset 0 -1px 0 0 #00abfa;
 }
-form input[type="submit"]:active {
+input[type="submit"]:active {
   -webkit-box-shadow: inset 0 0 5px 1px rgba(0,0,0,0.6);
   -moz-box-shadow: inset 0 0 5px 1px rgba(0,0,0,0.6);
   box-shadow: inset 0 0 5px 1px rgba(0,0,0,0.6);
 }
-form input[type="submit"]:focus {
+input[type="submit"]:focus {
   outline: none;
   -webkit-box-shadow: inset 0 0 3px 1px rgba(0,171,250,0.6), inset 0 -1px 0 0 #00abfa, 0 0 3px 1px rgba(0,171,250,0.5);
   -moz-box-shadow: inset 0 0 3px 1px rgba(0,171,250,0.6), inset 0 -1px 0 0 #00abfa, 0 0 3px 1px rgba(0,171,250,0.5);
