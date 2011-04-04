@@ -31,6 +31,14 @@ function validate(obj, prop, type) {
 }
 
 /**
+ * Respond with items.
+ */
+
+exports.index = function(req, res){
+  res.send(db.items);
+};
+
+/**
  * Create an item.
  */
 
