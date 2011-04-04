@@ -12,6 +12,7 @@ j(function(){
       if (!res.error) {
         j('.edit-item').remove();
         j('#items-form tbody').append(addItem);
+        graph();
       }
     });
     return false;
@@ -24,7 +25,10 @@ j(function(){
       if (ok) {
         var url = self.attr('href');
         remove(self.parents('tr'));
-        j.post(url, { _method: 'DELETE' }, response);
+        j.post(url, { _method: 'DELETE' }, function(res){
+          response(res);
+          graph();
+        });
       }
     });
     return false;
