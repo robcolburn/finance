@@ -85,7 +85,7 @@ function response(res) {
 
 function chart() {
   $.get('/items', function(items){
-    var size = 100;
+    var size = 150;
     // TODO: update not append
     categoryChart(items, size);
     entityChart(items, size);
@@ -95,13 +95,33 @@ function chart() {
 function categoryChart(items, size) {
   var r = Raphael('category-chart')
     , category = data(items, 'category');
-  r.g.piechart(size, size, size, category.data, { legend: category.names });
+  var pie = r.g.piechart(size, size, size * 0.8, category.data, { legend: category.names });
+  hover(pie);
 }
 
 function entityChart(items, size) {
   var r = Raphael('entity-chart')
     , tag = data(items, 'entity');
-  r.g.piechart(size, size, size, tag.data, { legend: tag.names });
+  var pie = r.g.piechart(size, size, size * 0.8, tag.data, { legend: tag.names });
+  hover(pie);
+}
+
+function hover(pie) {
+  pie.hover(function(){
+    this.sector.stop();
+    this.sector.scale(1.1, 1.1, this.cx, this.cy);
+    if (this.label) {
+      this.label[0].stop();
+      this.label[0].scale(1.5);
+      this.label[1].attr({ 'font-weight': 800 });
+    }
+  }, function(){
+    this.sector.animate({ scale: [1, 1, this.cx, this.cy] }, 500, 'bounce');
+    if (this.label) {
+      this.label[0].animate({ scale: 1 });
+      this.label[1].attr({ 'font-weight': 400 });
+    }
+  });
 }
 
 function data(items, prop) {
