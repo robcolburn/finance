@@ -47,8 +47,8 @@ j(function(){
     });
 
     rows.each(function(i, row){
-      tbody.children[i] = row;
-    })
+      tbody.appendChild(row);
+    });
   });
 
   // graph
