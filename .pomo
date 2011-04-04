@@ -18,9 +18,24 @@
   complete: false
   description: 
   length: 25
-  name: charts / reporting
+  name: in-place editing
 - !ruby/object:Pomo::Task 
   complete: false
   description: 
   length: 25
-  name: in-place editing
+  name: year overview chart
+- !ruby/object:Pomo::Task 
+  complete: false
+  description: 
+  length: 25
+  name: more charts
+- !ruby/object:Pomo::Task 
+  complete: false
+  description: 
+  length: 25
+  name: exports
+- !ruby/object:Pomo::Task 
+  complete: false
+  description: 
+  length: 25
+  name: printing
