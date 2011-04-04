@@ -115,8 +115,11 @@ function data(items, prop) {
   });
 
   Object.keys(sums).forEach(function(name){
-    obj.names.push(name + ' (' + sums[name].count + ')');
-    obj.data.push(sums[name].amount);
+    var count = sums[name].count
+      , amount = sums[name].amount;
+
+    obj.names.push('$' + amount + ' - ' + name + ' (' + count + ')');
+    obj.data.push(amount);
   });
 
   return obj;
