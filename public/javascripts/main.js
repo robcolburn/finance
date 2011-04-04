@@ -86,6 +86,7 @@ function response(res) {
 function chart() {
   $.get('/items', function(items){
     var size = 100;
+    // TODO: update not append
     categoryChart(items, size);
     entityChart(items, size);
   });
