@@ -1,6 +1,6 @@
 ul#notifications
 
-form#items-form
+form#items-form(action='/')
   table#items
     thead
       tr
@@ -13,3 +13,5 @@ form#items-form
     tbody
       != partial('item', { collection: items })
       != partial('item/form')
+
+#pie-chart
