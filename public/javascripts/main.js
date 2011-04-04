@@ -12,7 +12,7 @@ j(function(){
       if (!res.error) {
         j('.edit-item').remove();
         j('#items-form tbody').append(addItem);
-        graph();
+        chart();
       }
     });
     return false;
@@ -27,7 +27,7 @@ j(function(){
         remove(self.parents('tr'));
         j.post(url, { _method: 'DELETE' }, function(res){
           response(res);
-          graph();
+          chart();
         });
       }
     });
@@ -35,7 +35,7 @@ j(function(){
   });
 
   // graph
-  graph();
+  chart();
 });
 
 function notify(type, msg, duration) {
@@ -83,12 +83,16 @@ function response(res) {
   }
 }
 
-function graph() {
+function chart() {
   $.get('/items', function(items){
-    var r = Raphael('pie-chart')
-      , category = categoryData(items);
-    r.g.piechart(200, 200, 100, category.data, { legend: category.names });
+    updateCategoryChart(items);
   });
+}
+
+function updateCategoryChart(items) {
+  var r = Raphael('pie-chart')
+    , category = categoryData(items);
+  r.g.piechart(200, 200, 100, category.data, { legend: category.names });
 }
 
 function categoryData(items) {
