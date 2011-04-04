@@ -2,15 +2,15 @@
 var j = $;
 
 j(function(){
-  var addItem = j('.item-edit').html();
+  var addItem = j('.edit-item').get(0).outerHTML;
 
   // add item
   j('#items-form').submit(function(){
     var data = j(this).serialize();
     j.post('/item', data, function(ok){
-      j('.edit-items').remove();
+      j('.edit-item').remove();
       response(ok);
-      j('#items-form').append(addItem);
+      j('#items-form tbody').append(addItem);
     });
     return false;
   });
