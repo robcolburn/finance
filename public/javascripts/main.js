@@ -34,6 +34,23 @@ j(function(){
     return false;
   });
 
+  j('table thead th').click(function(){
+    var i = this.cellIndex
+      , table = j(this).parents('table')
+      , tbody = table.find('tbody').get(0)
+      , rows = table.find('tbody tr').slice(0, -1);
+
+    rows = rows.sort(function(a, b){
+      var a = parseInt(j(a.cells[i]).text(), 10)
+        , b = parseInt(j(b.cells[i]).text(), 10);
+      return a - b;
+    });
+
+    rows.each(function(i, row){
+      tbody.children[i] = row;
+    })
+  });
+
   // graph
   chart();
 });
