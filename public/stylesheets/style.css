@@ -175,6 +175,14 @@ table#items {
 table#items thead tr th {
   padding: 10px 10px 10px 0;
   text-align: right;
+  -webkit-user-select: none;
+  cursor: pointer;
+}
+table#items thead tr th.asc::before {
+  content: "▲";
+}
+table#items thead tr th.desc::before {
+  content: "▼";
 }
 table#items tbody tr {
   border-bottom: 1px solid #eee;

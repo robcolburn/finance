@@ -45,7 +45,15 @@ j(function(){
         ? 'desc'
         : 'asc';
 
-    self.removeClass('asc').removeClass('desc').addClass(direction);
+    table
+      .find('th')
+      .removeClass('asc')
+      .removeClass('desc');
+
+    self
+      .removeClass('asc')
+      .removeClass('desc')
+      .addClass(direction);
 
     rows = rows.sort(function(a, b){
       var a = parseInt(j(a.cells[i]).text(), 10)
