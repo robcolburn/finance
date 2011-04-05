@@ -38,7 +38,8 @@ j(function(){
   j('#menu .charts a').click(function(){
     $.get('/items', function(items){
       var dialog = displayChart();
-      categoryChart(items, dialog.find('.chart').get(0), 500, 200);
+      categoryChart(items, dialog.find('#category-chart').get(0), 550, 200);
+      entityChart(items, dialog.find('#entity-chart').get(0), 550, 200);
     });
     return false;
   });
@@ -169,10 +170,17 @@ function categoryChart(items, container, width, height) {
   hover(pie);
 }
 
-function entityChart(items, size) {
-  var r = Raphael('entity-chart')
-    , tag = data(items, 'entity');
-  var pie = r.g.piechart(size, size, size * 0.8, tag.data, { legend: tag.names });
+function entityChart(items, container, width, height) {
+  var radius = height * 0.50
+    , r = Raphael(container, width, height)
+    , entity = data(items, 'entity');
+
+  var pie = r.g.piechart(
+      width / 2
+    , height / 2
+    , radius
+    , entity.data, { legend: entity.names });
+
   hover(pie);
 }
 
