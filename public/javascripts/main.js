@@ -34,6 +34,42 @@ j(function(){
     return false;
   });
 
+  j('table thead th').click(function(){
+    var i = this.cellIndex
+      , self = j(this)
+      , table = self.parents('table')
+      , tbody = table.find('tbody')
+      , rows = table.find('tbody tr').slice(0, -1)
+      , add = table.find('tbody tr:last')
+      , direction = self.hasClass('asc')
+        ? 'desc'
+        : 'asc';
+
+    table
+      .find('th')
+      .removeClass('asc')
+      .removeClass('desc');
+
+    self
+      .removeClass('asc')
+      .removeClass('desc')
+      .addClass(direction);
+
+    rows = rows.sort(function(a, b){
+      var a = parseInt(j(a.cells[i]).text(), 10)
+        , b = parseInt(j(b.cells[i]).text(), 10);
+      return 'asc' == direction
+        ? a - b
+        : b - a;
+    });
+
+    rows.each(function(i, row){
+      tbody.append(row);
+    });
+
+    tbody.append(add);
+  });
+
   // graph
   chart();
 });

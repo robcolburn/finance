@@ -117,6 +117,14 @@ table#items
     tr th
       padding: 10px 10px 10px 0
       text-align: right
+      -webkit-user-select: none
+      cursor: pointer
+      &.asc::before
+        content: '▲ '
+        color: light
+      &.desc::before
+        content: '▼ '
+        color: light
   tbody
     tr
       border-bottom: 1px solid #eee
