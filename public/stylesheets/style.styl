@@ -17,6 +17,17 @@ smooth()
 transition()
   -webkit-transition: arguments
 
+hide-text()
+  display: block
+  text-indent: -9999999px
+  outline: none
+
+replace(url, width, height = width)
+  hide-text()
+  background: url
+  width: width
+  height: height
+
 button()
   bold-button()
   padding: 5px 8px 6px 8px
@@ -57,6 +68,20 @@ button,
 input[type='button'],
 input[type='submit']
   button()
+
+// menu
+
+ul#menu
+  fixed: top 15px right 15px
+  margin: 0
+  padding: 0
+  li
+    list-style: none
+    opacity: .5
+    &:hover
+      opacity: 1
+    &.charts a
+      replace: url(/images/icons/pie-chart.png) 24px
 
 // notifications
 
