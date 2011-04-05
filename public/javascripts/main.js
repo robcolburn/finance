@@ -34,6 +34,15 @@ j(function(){
     return false;
   });
 
+  // display charts
+  j('#menu .charts a').click(function(){
+    $.get('/items', function(items){
+      var dialog = displayChart();
+      categoryChart(items, dialog.find('.chart').get(0), 500, 200);
+    });
+    return false;
+  });
+
   j('table thead th').click(function(){
     var i = this.cellIndex
       , self = j(this)
@@ -103,6 +112,24 @@ function confirm(msg, fn) {
   overlay.removeClass('hide');
 }
 
+function displayChart(chart){
+  var dialog = j(j('#chart').html())
+    , overlay = j('#overlay');
+
+  dialog
+    .appendTo('body')
+    .find('.contents').append(chart);
+
+  overlay
+    .removeClass('hide')
+    .click(function(){
+      overlay.addClass('hide');
+      dialog.remove();
+    });
+
+  return dialog;
+}
+
 function remove(el) {
   j(el).fadeOut(function(){
     j(el).remove();
@@ -128,10 +155,17 @@ function chart() {
   });
 }
 
-function categoryChart(items, size) {
-  var r = Raphael('category-chart')
+function categoryChart(items, container, width, height) {
+  var radius = height * 0.50
+    , r = Raphael(container, width, height)
     , category = data(items, 'category');
-  var pie = r.g.piechart(size, size, size * 0.8, category.data, { legend: category.names });
+
+  var pie = r.g.piechart(
+      width / 2
+    , height / 2
+    , radius
+    , category.data, { legend: category.names });
+
   hover(pie);
 }
 
