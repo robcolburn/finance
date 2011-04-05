@@ -38,8 +38,9 @@ j(function(){
     var i = this.cellIndex
       , self = j(this)
       , table = self.parents('table')
-      , tbody = table.find('tbody').get(0)
+      , tbody = table.find('tbody')
       , rows = table.find('tbody tr').slice(0, -1)
+      , add = table.find('tbody tr:last')
       , direction = self.hasClass('asc')
         ? 'desc'
         : 'asc';
@@ -55,8 +56,10 @@ j(function(){
     });
 
     rows.each(function(i, row){
-      tbody.appendChild(row);
+      tbody.append(row);
     });
+
+    tbody.append(add);
   });
 
   // graph
