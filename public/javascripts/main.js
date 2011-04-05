@@ -34,6 +34,16 @@ j(function(){
     return false;
   });
 
+  // display charts
+  j('#menu .charts a').click(function(){
+    $.get('/items', function(items){
+      var dialog = displayChart();
+      categoryChart(items, dialog.find('#category-chart').get(0), 550, 200);
+      entityChart(items, dialog.find('#entity-chart').get(0), 550, 200);
+    });
+    return false;
+  });
+
   j('table thead th').click(function(){
     var i = this.cellIndex
       , self = j(this)
@@ -100,7 +110,51 @@ function confirm(msg, fn) {
     .find('.ok').click(reply(true)).focus().end()
     .find('.cancel').click(reply(false));
 
+  dialog.css({
+      top: (window.innerHeight / 2) - dialog.height() / 2
+    , left: (window.innerWidth / 2) - dialog.width() / 2
+  });
+  
+  j(window).resize(function(){
+    dialog.css({
+        top: (window.innerHeight / 2) - dialog.height() / 2
+      , left: (window.innerWidth / 2) - dialog.width() / 2
+    });
+  });
+
   overlay.removeClass('hide');
+}
+
+function displayChart(chart){
+  var dialog = j(j('#chart').html())
+    , overlay = j('#overlay');
+
+  dialog
+    .appendTo('body')
+    .find('.contents').append(chart);
+
+  overlay
+    .removeClass('hide')
+    .click(function(){
+      overlay.addClass('hide');
+      dialog.remove();
+    });
+
+  setTimeout(function(){
+    dialog.css({
+        top: (window.innerHeight / 2) - dialog.height() / 2
+      , left: (window.innerWidth / 2) - dialog.width() / 2
+    });
+
+    j(window).resize(function(){
+      dialog.css({
+          top: (window.innerHeight / 2) - dialog.height() / 2
+        , left: (window.innerWidth / 2) - dialog.width() / 2
+      });
+    });
+  }, 0);
+
+  return dialog;
 }
 
 function remove(el) {
@@ -128,17 +182,31 @@ function chart() {
   });
 }
 
-function categoryChart(items, size) {
-  var r = Raphael('category-chart')
+function categoryChart(items, container, width, height) {
+  var radius = height * 0.50
+    , r = Raphael(container, width, height)
     , category = data(items, 'category');
-  var pie = r.g.piechart(size, size, size * 0.8, category.data, { legend: category.names });
+
+  var pie = r.g.piechart(
+      width / 2
+    , height / 2
+    , radius
+    , category.data, { legend: category.names });
+
   hover(pie);
 }
 
-function entityChart(items, size) {
-  var r = Raphael('entity-chart')
-    , tag = data(items, 'entity');
-  var pie = r.g.piechart(size, size, size * 0.8, tag.data, { legend: tag.names });
+function entityChart(items, container, width, height) {
+  var radius = height * 0.50
+    , r = Raphael(container, width, height)
+    , entity = data(items, 'entity');
+
+  var pie = r.g.piechart(
+      width / 2
+    , height / 2
+    , radius
+    , entity.data, { legend: entity.names });
+
   hover(pie);
 }
 

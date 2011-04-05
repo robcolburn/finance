@@ -14,6 +14,20 @@ dark = #222
 smooth()
   -webkit-font-smoothing: antialiased
 
+transition()
+  -webkit-transition: arguments
+
+hide-text()
+  display: block
+  text-indent: -9999999px
+  outline: none
+
+replace(url, width, height = width)
+  hide-text()
+  background: url
+  width: width
+  height: height
+
 button()
   bold-button()
   padding: 5px 8px 6px 8px
@@ -55,6 +69,20 @@ input[type='button'],
 input[type='submit']
   button()
 
+// menu
+
+ul#menu
+  fixed: top 15px right 15px
+  margin: 0
+  padding: 0
+  li
+    list-style: none
+    opacity: .5
+    &:hover
+      opacity: 1
+    &.charts a
+      replace: url(/images/icons/pie-chart.png) 24px
+
 // notifications
 
 ul#notifications
@@ -75,7 +103,7 @@ ul#notifications
 // dialogs
 
 .dialog
-  fixed: top 40% left 42%
+  position: fixed
   padding: 5px 10px
   background: white
   border-radius: 5px
@@ -100,7 +128,7 @@ ul#notifications
   height: 100%
   background: rgba(black, 0.8)
   z-index: 500
-  -webkit-transition opacity 0.5s
+  transition: opacity 0.3s
   opacity: 1
   visibility: visible
   &.hide
@@ -125,6 +153,8 @@ table#items
       &.desc::before
         content: '▼ '
         color: light
+
+table#items
   tbody
     tr
       border-bottom: 1px solid #eee
@@ -156,7 +186,14 @@ table#items
           width: 70px
           a
             button()
-    tr.edit-item td
-      text-align: right
-      input[type='text']
-        width: 80%
+
+table#items
+  tr.edit-item td
+    text-align: right
+    input[type='text']
+      width: 80%
+
+// charts
+
+.dialog .chart
+  padding 15px
