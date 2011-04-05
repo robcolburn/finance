@@ -110,6 +110,18 @@ function confirm(msg, fn) {
     .find('.ok').click(reply(true)).focus().end()
     .find('.cancel').click(reply(false));
 
+  dialog.css({
+      top: (window.innerHeight / 2) - dialog.height() / 2
+    , left: (window.innerWidth / 2) - dialog.width() / 2
+  });
+  
+  j(window).resize(function(){
+    dialog.css({
+        top: (window.innerHeight / 2) - dialog.height() / 2
+      , left: (window.innerWidth / 2) - dialog.width() / 2
+    });
+  });
+
   overlay.removeClass('hide');
 }
 
@@ -127,6 +139,20 @@ function displayChart(chart){
       overlay.addClass('hide');
       dialog.remove();
     });
+
+  setTimeout(function(){
+    dialog.css({
+        top: (window.innerHeight / 2) - dialog.height() / 2
+      , left: (window.innerWidth / 2) - dialog.width() / 2
+    });
+
+    j(window).resize(function(){
+      dialog.css({
+          top: (window.innerHeight / 2) - dialog.height() / 2
+        , left: (window.innerWidth / 2) - dialog.width() / 2
+      });
+    });
+  }, 0);
 
   return dialog;
 }
