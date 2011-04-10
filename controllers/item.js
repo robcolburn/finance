@@ -73,7 +73,7 @@ exports.create = function(req, res, next){
  */
 
 exports.destroy = function(req, res, next){
-  var id = req.params.id;
+  var id = req.params.item;
   if (!db.items[id]) return res.send({ error: 'Invalid item' });
   delete db.items[id];
   db.save();
