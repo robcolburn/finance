@@ -207,6 +207,14 @@ table#items
   display: inline-block
   padding: 15px
   border: 1px solid lighter
+  color: inherit
+  opacity: .2
+  transition: opacity .3s
+  &:hover
+    text-decoration: none
+    opacity: 1
+  &:active
+    background: lighter + 5%
 
 #prev-month
   fixed: top 50% left 0
@@ -215,7 +223,7 @@ table#items
   fixed: top 50% right 0
   border-radius: left 25px
 #current-month
-  fixed: top 0 right 50%
+  fixed: top 0 left 45%
   border-radius: bottom 5px
   padding-top: 8px
   padding-bottom: 8px
