@@ -7,7 +7,7 @@ j(function(){
   // add item
   j('#items-form').submit(function(){
     var data = j(this).serialize();
-    j.post('/items', data, function(res){
+    j.post('/month/' + express.month + '/items', data, function(res){
       response(res);
       if (!res.error) {
         j('.edit-item').remove();
@@ -36,7 +36,7 @@ j(function(){
 
   // display charts
   j('#menu .charts a').click(function(){
-    $.get('/items', function(items){
+    $.get('/month/' + express.month + '/items', function(items){
       var dialog = displayChart();
       categoryChart(items, dialog.find('#category-chart').get(0), 550, 200);
       entityChart(items, dialog.find('#entity-chart').get(0), 550, 200);
@@ -174,7 +174,7 @@ function response(res) {
 }
 
 function chart() {
-  $.get('/items', function(items){
+  $.get('/month/' + express.month + '/items', function(items){
     var size = 150;
     // TODO: update not append
     categoryChart(items, size);

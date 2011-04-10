@@ -69,8 +69,9 @@ app.configure('tj', function(){
 // routing
 
 app.get('/', main.index);
-app.get('/month/:month', main.month);
-app.resource('items', require('./controllers/item'));
+var month = app.resource('month', require('./controllers/month'));
+var items = app.resource('items', require('./controllers/item'));
+month.add(items);
 
 // listen
 
