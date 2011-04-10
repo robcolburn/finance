@@ -20,17 +20,22 @@ function compile(str, path) {
     .include(nib.path);
 }
 
-// - parse json dates
-// - set lengths
+// normalize database on boot
 
 function normalize() {
-  var ids = Object.keys(db.items);
+  var month
+    , ids;
 
-  // dates
-  ids.forEach(function(id){
-    var item = db.items[id];
-    item.date = new Date(item.date);
-  });
+  // months
+  for (var i = 0; i < 12; ++i) {
+    month = db.months[i] = db.months[i] || { items: {} };
+    ids = Object.keys(month.items);
+    // dates
+    ids.forEach(function(id){
+      var item = month.items[id];
+      item.date = new Date(item.date);
+    });
+  }
 }
 
 // configuration
@@ -63,6 +68,7 @@ app.configure('tj', function(){
 // routing
 
 app.get('/', main.index);
+app.get('/month/:month', main.month);
 app.resource('items', require('./controllers/item'));
 
 // listen
