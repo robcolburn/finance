@@ -4,11 +4,11 @@
  */
 
 var express = require('express')
-  , stylus = require('stylus')
-  , tablet = require('tablet')
   , Resource = require('express-resource')
   , Database = require('./lib/db')
-  , main = require('./controllers/main');
+  , main = require('./controllers/main')
+  , stylus = require('stylus')
+  , nib = require('nib');
 
 var app = module.exports = express.createServer();
 
@@ -17,7 +17,7 @@ var app = module.exports = express.createServer();
 function compile(str, path) {
   return stylus(str)
     .set('filename', path)
-    .set('paths', [tablet.path]);
+    .include(nib.path);
 }
 
 // - parse json dates
