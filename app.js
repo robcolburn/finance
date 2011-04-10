@@ -5,6 +5,7 @@
 
 var express = require('express')
   , Resource = require('express-resource')
+  , expose = require('express-expose')
   , Database = require('./lib/db')
   , main = require('./controllers/main')
   , stylus = require('stylus')
@@ -20,17 +21,22 @@ function compile(str, path) {
     .include(nib.path);
 }
 
-// - parse json dates
-// - set lengths
+// normalize database on boot
 
 function normalize() {
-  var ids = Object.keys(db.items);
+  var month
+    , ids;
 
-  // dates
-  ids.forEach(function(id){
-    var item = db.items[id];
-    item.date = new Date(item.date);
-  });
+  // months
+  for (var i = 0; i < 12; ++i) {
+    month = db.months[i] = db.months[i] || { items: {} };
+    ids = Object.keys(month.items);
+    // dates
+    ids.forEach(function(id){
+      var item = month.items[id];
+      item.date = new Date(item.date);
+    });
+  }
 }
 
 // configuration
@@ -63,7 +69,9 @@ app.configure('tj', function(){
 // routing
 
 app.get('/', main.index);
-app.resource('items', require('./controllers/item'));
+var month = app.resource('month', require('./controllers/month'));
+var items = app.resource('items', require('./controllers/item'));
+month.add(items);
 
 // listen
 

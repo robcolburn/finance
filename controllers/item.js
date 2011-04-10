@@ -39,7 +39,9 @@ function validate(obj, prop, type) {
  */
 
 exports.index = function(req, res){
-  res.send(db.items);
+  var month = req.params.month
+    , items = db.months[month].items;
+  res.send(items);
 };
 
 /**
@@ -47,7 +49,9 @@ exports.index = function(req, res){
  */
 
 exports.create = function(req, res, next){
-  var item = req.body.item;
+  var month = req.params.month
+    , items = db.months[month].items
+    , item = req.body.item;
   item.tags = item.tags
     ? item.tags.split(/ *, */)
     : [];
@@ -57,9 +61,9 @@ exports.create = function(req, res, next){
     validate(item, 'category');
     validate(item, 'amount', 'number');
     item.id = db.ids++;
-    db.items[item.id] = item;
+    items[item.id] = item;
     db.save();
-    res.partial('item', { object: item }, function(err, html){
+    res.partial('item', { month: month, object: item }, function(err, html){
       if (err) return next(err);
       res.send({ append: html, to: '#items' });
     });
@@ -73,9 +77,11 @@ exports.create = function(req, res, next){
  */
 
 exports.destroy = function(req, res, next){
-  var id = req.params.item;
-  if (!db.items[id]) return res.send({ error: 'Invalid item' });
-  delete db.items[id];
+  var month = db.months[req.params.month]
+    , id = req.params.item
+    , item = month.items[id];
+  if (!item) return res.send({ error: 'Cannot find item' });
+  delete month.items[id];
   db.save();
   res.send({});
 };

@@ -4,6 +4,14 @@ ul#menu
 
 ul#notifications
 
+#current-month= monthName(month)
+
+- if (month)
+  a#prev-month(href='/month/' + (month - 1))= monthName(month - 1)
+
+- if (month < 11)
+  a#next-month(href='/month/' + (month + 1))= monthName(month + 1)
+
 form#items-form(action='/')
   table#items
     thead
