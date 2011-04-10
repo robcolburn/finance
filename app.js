@@ -5,6 +5,7 @@
 
 var express = require('express')
   , Resource = require('express-resource')
+  , expose = require('express-expose')
   , Database = require('./lib/db')
   , main = require('./controllers/main')
   , stylus = require('stylus')
