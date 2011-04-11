@@ -10,6 +10,7 @@
     , "jade": "0.9.x"
     , "github-flavored-markdown": "1.0.0"
     , "stylus": "0.11.x"
+    , "nib": "0.0.x"
   },
   "engines": { "node": ">= 0.4.4" }
 }
