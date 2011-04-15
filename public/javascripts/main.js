@@ -79,9 +79,6 @@ j(function(){
 
     tbody.append(add);
   });
-
-  // graph
-  chart();
 });
 
 function notify(type, msg, duration) {
