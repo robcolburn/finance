@@ -9,3 +9,7 @@
 
     $ npm bundle
     $ node app.js
+
+## Screenshot
+
+![expenses app](http://f.cl.ly/items/3f092d340O1O351j283x/Screenshot.png)
