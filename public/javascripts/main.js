@@ -1,4 +1,6 @@
 
+// don't copy me :) this is sloppy js
+
 var j = $;
 
 j(function(){
@@ -44,6 +46,7 @@ j(function(){
     return false;
   });
 
+  // sort columns
   j('table thead th').click(function(){
     var i = this.cellIndex
       , self = j(this)
@@ -81,6 +84,14 @@ j(function(){
   });
 });
 
+/**
+ * Notify `msg` for the given `duration` defaulting to 2 seconds.
+ *
+ * @param {String} type
+ * @param {String} msg
+ * @param {Number} duration
+ */
+
 function notify(type, msg, duration) {
   if (!msg) msg = type, type = 'info';
   duration = duration || 2000;
@@ -88,6 +99,13 @@ function notify(type, msg, duration) {
   j('#notifications').append(el);
   setTimeout(function(){ remove(el); }, duration);
 }
+
+/**
+ * Display confirmation `msg`.
+ *
+ * @param {String} msg
+ * @param {Function} fn
+ */
 
 function confirm(msg, fn) {
   var dialog = j(j('#confirm').html())
@@ -122,6 +140,12 @@ function confirm(msg, fn) {
   overlay.removeClass('hide');
 }
 
+/**
+ * Display `chart`.
+ *
+ * @param {jQuery} chart
+ */
+
 function displayChart(chart){
   var dialog = j(j('#chart').html())
     , overlay = j('#overlay');
@@ -154,11 +178,23 @@ function displayChart(chart){
   return dialog;
 }
 
+/**
+ * Fade out then remove `el`.
+ *
+ * @param {jQuery} el
+ */
+
 function remove(el) {
   j(el).fadeOut(function(){
     j(el).remove();
   });
 }
+
+/**
+ * Handle `res`.
+ *
+ * @param {Object} res
+ */
 
 function response(res) {
   if (res.error) {
@@ -170,14 +206,21 @@ function response(res) {
   }
 }
 
+/**
+ * Display charts.
+ */
+
 function chart() {
   $.get('/month/' + express.month + '/items', function(items){
     var size = 150;
-    // TODO: update not append
     categoryChart(items, size);
     entityChart(items, size);
   });
 }
+
+/**
+ * Generate category chart.
+ */
 
 function categoryChart(items, container, width, height) {
   var radius = height * 0.50
@@ -193,6 +236,10 @@ function categoryChart(items, container, width, height) {
   hover(pie);
 }
 
+/**
+ * Generate entity chart.
+ */
+
 function entityChart(items, container, width, height) {
   var radius = height * 0.50
     , r = Raphael(container, width, height)
@@ -206,6 +253,10 @@ function entityChart(items, container, width, height) {
 
   hover(pie);
 }
+
+/**
+ * Handle pie segment hover.
+ */
 
 function hover(pie) {
   pie.hover(function(){
@@ -224,6 +275,10 @@ function hover(pie) {
     }
   });
 }
+
+/**
+ * Data mapper.
+ */
 
 function data(items, prop) {
   var obj = { names: [], data: [] }
